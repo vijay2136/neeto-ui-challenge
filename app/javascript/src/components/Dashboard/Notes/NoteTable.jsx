@@ -2,22 +2,8 @@ import React, { useState } from "react";
 
 import { Table } from "neetoui/v2";
 
+import { NOTES_TABLE_COLUMN_DATA } from "./constants";
 import EditNotePane from "./Pane/EditNote";
-
-export const COLUMN_DATA = [
-  {
-    title: "Title",
-    dataIndex: "title",
-    key: "title",
-    width: "30%",
-  },
-  {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
-    width: "70%",
-  },
-];
 
 export default function NoteTable({
   setSelectedNoteIds,
@@ -31,7 +17,7 @@ export default function NoteTable({
       <div className="w-full notes-table-height">
         <Table
           rowData={notes}
-          columnData={COLUMN_DATA}
+          columnData={NOTES_TABLE_COLUMN_DATA}
           onRowSelect={selectedRowKeys => {
             setSelectedNoteIds(selectedRowKeys);
           }}

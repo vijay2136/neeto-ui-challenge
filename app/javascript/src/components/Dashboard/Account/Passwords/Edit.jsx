@@ -4,26 +4,16 @@ import { Form, Formik } from "formik";
 import { Button, Toastr } from "neetoui/v2";
 import { Input } from "neetoui/v2/formik";
 import { Container, Header } from "neetoui/v2/layouts";
-import * as yup from "yup";
 
 import registrationsApi from "apis/registrations";
 
+import {
+  CHANGE_PASSWORD_FORM_INITIAL_VALUES,
+  CHANGE_PASSWORD_FORM_VALIDATION_SCHEMA,
+  CHANGE_PASSWORD_FORM_INPUT_ATTRIBUTES,
+} from "../constants";
+
 const Edit = () => {
-  const validationSchema = yup.object({
-    currentPassword: yup.string().required("Current password is required"),
-    password: yup.string().required("New password is required"),
-    passwordConfirmation: yup
-      .string()
-      .required("Password confirmation is required")
-      .oneOf([yup.ref("password"), null], "Passwords must match"),
-  });
-
-  const formikInputAttrs = {
-    type: "password",
-    "aria-required": "true",
-    placeholder: "******",
-  };
-
   const handleSubmit = async data => {
     try {
       await registrationsApi.updatePassword({
@@ -44,23 +34,23 @@ const Edit = () => {
       <Header title="Change Password" className="border-b border-gray-200" />
       <div className="flex flex-col items-center justify-center w-full h-full mx-auto sm:max-w-md">
         <Formik
-          initialValues={{
-            currentPassword: "",
-            password: "",
-            passwordConfirmation: "",
-          }}
-          validationSchema={validationSchema}
+          initialValues={CHANGE_PASSWORD_FORM_INITIAL_VALUES}
+          validationSchema={CHANGE_PASSWORD_FORM_VALIDATION_SCHEMA}
           onSubmit={handleSubmit}
         >
           <Form className="w-full p-8 space-y-6 bg-white border rounded-lg shadow-sm">
             <Input
-              {...formikInputAttrs}
+              {...CHANGE_PASSWORD_FORM_INPUT_ATTRIBUTES}
               name="currentPassword"
               label="Current password"
             />
-            <Input {...formikInputAttrs} name="password" label="New password" />
             <Input
-              {...formikInputAttrs}
+              {...CHANGE_PASSWORD_FORM_INPUT_ATTRIBUTES}
+              name="password"
+              label="New password"
+            />
+            <Input
+              {...CHANGE_PASSWORD_FORM_INPUT_ATTRIBUTES}
               name="passwordConfirmation"
               label="Confirm password"
             />
