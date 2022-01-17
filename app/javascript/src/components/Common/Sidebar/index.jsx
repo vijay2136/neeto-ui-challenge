@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 
-import { Toastr } from "neetoui/v2";
-import { Sidebar } from "neetoui/v2/layouts";
+import { Sidebar as NeetoUISidebar } from "neetoui/v2/layouts";
 import { useHistory } from "react-router-dom";
 
 import authenticationApi from "apis/authentication";
-import { resetAuthTokens } from "apis/axios";
-import { PROFILE_PATH, CHANGE_PASSWORD_PATH } from "components/routeConstants";
+import {
+  PROFILE_PATH,
+  CHANGE_PASSWORD_PATH,
+  DASHBOARD_PATH,
+} from "components/routeConstants";
 import { useAuthDispatch } from "contexts/auth";
 import { useUserState } from "contexts/user";
 
 import { APP_NAME, SIDENAV_LINKS } from "./constants";
 
-const Sidenav = () => {
+const Sidebar = () => {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const history = useHistory();
   const authDispatch = useAuthDispatch();
-
   const { user } = useUserState();
-
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   const handleLogout = async () => {
     try {
       await authenticationApi.logout();
       authDispatch({ type: "LOGOUT" });
-      resetAuthTokens();
-      window.location.href = "/";
+      window.location.href = DASHBOARD_PATH;
     } catch (error) {
-      Toastr.error(error);
+      logger.error(error);
     }
   };
 
@@ -47,7 +46,7 @@ const Sidenav = () => {
   ];
 
   return (
-    <Sidebar
+    <NeetoUISidebar
       isCollapsed={isSidebarCollapsed}
       navLinks={SIDENAV_LINKS}
       appName={APP_NAME}
@@ -67,4 +66,4 @@ const Sidenav = () => {
   );
 };
 
-export default Sidenav;
+export default Sidebar;

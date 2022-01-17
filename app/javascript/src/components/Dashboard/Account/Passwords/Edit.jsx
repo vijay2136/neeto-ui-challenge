@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Form, Formik } from "formik";
-import { Button, Toastr } from "neetoui/v2";
+import { Button } from "neetoui/v2";
 import { Input } from "neetoui/v2/formik";
 import { Container, Header } from "neetoui/v2/layouts";
 
@@ -14,18 +14,17 @@ import {
 } from "../constants";
 
 const Edit = () => {
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = async data => {
     try {
-      await registrationsApi.updatePassword({
-        user: {
-          current_password: data.currentPassword,
-          password: data.password,
-          password_confirmation: data.passwordConfirmation,
-        },
-      });
-      Toastr.success("Password updated successfully");
+      setLoading(true);
+      await registrationsApi.updatePassword(data);
     } catch (error) {
       logger.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,6 +36,8 @@ const Edit = () => {
           initialValues={CHANGE_PASSWORD_FORM_INITIAL_VALUES}
           validationSchema={CHANGE_PASSWORD_FORM_VALIDATION_SCHEMA}
           onSubmit={handleSubmit}
+          validateOnBlur={submitted}
+          validateOnChange={submitted}
         >
           <Form className="w-full p-8 space-y-6 bg-white border rounded-lg shadow-sm">
             <Input
@@ -55,11 +56,15 @@ const Edit = () => {
               label="Confirm password"
             />
             <Button
+              fullWidth
               name="submit"
               type="submit"
               label="Update"
               className="h-8"
-              fullWidth
+              loading={loading}
+              onClick={() => {
+                setSubmitted(true);
+              }}
             />
           </Form>
         </Formik>
