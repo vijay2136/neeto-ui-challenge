@@ -8,11 +8,11 @@ import formValidationSchemas from "constants/formValidationSchemas";
 
 import { ASSIGNED_CONTACT_OPTIONS, TAGS_OPTIONS } from "../constants";
 
-const NoteForm = ({ isEdit = false, onClose, note, handleCreate }) => {
+const NoteForm = ({ isEdit = false, onClose, note, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
   const handleSubmit = () => {
     setSubmitted(true);
-    handleCreate();
+    handleNote();
   };
 
   return (

@@ -8,7 +8,7 @@ import Form from "./Form";
 
 const NewNotePane = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
-  const handleCreate = () => {
+  const handleNote = () => {
     Toastr.success("Note has been added successfully");
     setShowPane(false);
   };
@@ -23,7 +23,7 @@ const NewNotePane = ({ showPane, setShowPane }) => {
       <Form
         onClose={onClose}
         note={formInitialValues.notesForm}
-        handleCreate={handleCreate}
+        handleNote={handleNote}
       />
     </Pane>
   );
