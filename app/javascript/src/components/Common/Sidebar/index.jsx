@@ -36,10 +36,6 @@ const Sidenav = () => {
       onClick: () => history.push("/my/profile"),
     },
     {
-      label: "Change Password",
-      onClick: () => history.push("/my/password/edit"),
-    },
-    {
       label: "Logout",
       onClick: handleLogout,
     },
@@ -51,13 +47,9 @@ const Sidenav = () => {
       isCollapsed={isSidebarCollapsed}
       navLinks={SIDENAV_LINKS}
       appName={APP_NAME}
-      organizationInfo={{
-        name: "Wheel",
-        subdomain: "bigbinary.com",
-      }}
       profileInfo={{
         name: `${user.first_name} ${user.last_name}`,
-        imageUrl: user.profile_image_path,
+        imageUrl: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
         email: user.email,
         bottomLinks,
       }}
