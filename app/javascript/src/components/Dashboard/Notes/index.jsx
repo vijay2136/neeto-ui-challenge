@@ -7,6 +7,7 @@ import { Container, Header, SubHeader } from "neetoui/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
+import Menubar from "components/Common/Menubar";
 
 import DeleteAlert from "./DeleteAlert";
 import NoteTable from "./NoteTable";
@@ -41,62 +42,65 @@ const Notes = () => {
   }
 
   return (
-    <Container>
-      <Header
-        title="Notes"
-        actionBlock={
-          <Button
-            onClick={() => setShowNewNotePane(true)}
-            label="Add New Note"
-            icon="ri-add-line"
+    <>
+      <Menubar showMenu title="Notes" />
+      <Container>
+        <Header
+          title="Notes"
+          actionBlock={
+            <Button
+              onClick={() => setShowNewNotePane(true)}
+              label="Add New Note"
+              icon="ri-add-line"
+            />
+          }
+          searchProps={{
+            value: searchTerm,
+            onChange: e => setSearchTerm(e.target.value),
+          }}
+        />
+        {notes.length ? (
+          <>
+            <SubHeader
+              rightActionBlock={
+                <Button
+                  label="Delete"
+                  icon={Delete}
+                  onClick={() => setShowDeleteAlert(true)}
+                  disabled={!selectedNoteIds.length}
+                />
+              }
+            />
+            <NoteTable
+              setSelectedNoteIds={setSelectedNoteIds}
+              notes={notes}
+              fetchNotes={fetchNotes}
+            />
+          </>
+        ) : (
+          <EmptyState
+            image={EmptyNotesListImage}
+            title="Looks like you don't have any notes!"
+            subtitle="Add your notes to send customized emails to them."
+            primaryAction={() => setShowNewNotePane(true)}
+            primaryActionLabel="Add New Note"
           />
-        }
-        searchProps={{
-          value: searchTerm,
-          onChange: e => setSearchTerm(e.target.value),
-        }}
-      />
-      {notes.length ? (
-        <>
-          <SubHeader
-            rightActionBlock={
-              <Button
-                label="Delete"
-                icon={Delete}
-                onClick={() => setShowDeleteAlert(true)}
-                disabled={!selectedNoteIds.length}
-              />
-            }
-          />
-          <NoteTable
+        )}
+        <NewNotePane
+          showPane={showNewNotePane}
+          setShowPane={setShowNewNotePane}
+          fetchNotes={fetchNotes}
+        />
+        {showDeleteAlert && (
+          <DeleteAlert
+            selectedNoteIds={selectedNoteIds}
+            onClose={() => setShowDeleteAlert(false)}
+            refetch={fetchNotes}
             setSelectedNoteIds={setSelectedNoteIds}
-            notes={notes}
-            fetchNotes={fetchNotes}
           />
-        </>
-      ) : (
-        <EmptyState
-          image={EmptyNotesListImage}
-          title="Looks like you don't have any notes!"
-          subtitle="Add your notes to send customized emails to them."
-          primaryAction={() => setShowNewNotePane(true)}
-          primaryActionLabel="Add New Note"
-        />
-      )}
-      <NewNotePane
-        showPane={showNewNotePane}
-        setShowPane={setShowNewNotePane}
-        fetchNotes={fetchNotes}
-      />
-      {showDeleteAlert && (
-        <DeleteAlert
-          selectedNoteIds={selectedNoteIds}
-          onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchNotes}
-          setSelectedNoteIds={setSelectedNoteIds}
-        />
-      )}
-    </Container>
+        )}
+      </Container>
+    </>
   );
 };
 
