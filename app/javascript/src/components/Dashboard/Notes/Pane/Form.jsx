@@ -2,26 +2,17 @@ import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Input, Textarea, Select } from "neetoui/formik";
 
-import notesApi from "apis/notes";
 import formValidationSchemas from "constants/formValidationSchemas";
 
-export default function NoteForm({ onClose, refetch, note, isEdit }) {
+import { ASSIGNED_CONTACT_OPTIONS, TAGS_OPTIONS } from "../constants";
+
+const NoteForm = ({ isEdit = false, onClose, note, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = async values => {
-    try {
-      setSubmitted(true);
-      if (isEdit) {
-        await notesApi.update(note.id, values);
-      } else {
-        await notesApi.create(values);
-      }
-      refetch();
-      onClose();
-    } catch (err) {
-      logger.error(err);
-    }
+  const handleSubmit = () => {
+    setSubmitted(true);
+    handleNote();
   };
 
   return (
@@ -32,22 +23,36 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
       validateOnChange={submitted}
       validationSchema={formValidationSchemas.notesForm}
     >
-      {({ isSubmitting, handleSubmit }) => (
+      {({ isSubmitting }) => (
         <Form className="w-full">
-          <Pane.Body className="space-y-6">
-            <Input
-              label="Title"
-              name="title"
-              className="flex-grow-0 w-full"
-              required
-            />
-            <Textarea
-              label="Description"
-              name="description"
-              className="flex-grow-0 w-full"
-              rows={8}
-              required
-            />
+          <Pane.Body>
+            <div className="space-y-8 w-full">
+              <Input
+                label="Title*"
+                name="title"
+                size="large"
+                placeholder="Enter note title"
+              />
+              <Textarea
+                label="Description*"
+                name="description"
+                placeholder="Enter note description"
+              />
+              <Select
+                isClearable
+                label="Assigned Contact*"
+                name="contact"
+                options={ASSIGNED_CONTACT_OPTIONS}
+                placeholder="Select Role"
+              />
+              <Select
+                isClearable
+                label="Tags*"
+                name="tags"
+                options={TAGS_OPTIONS}
+                placeholder="Select Tags"
+              />
+            </div>
           </Pane.Body>
           <Pane.Footer>
             <Button
@@ -58,11 +63,6 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               className="mr-3"
               disabled={isSubmitting}
               loading={isSubmitting}
-              onClick={e => {
-                e.preventDefault();
-                setSubmitted(true);
-                handleSubmit();
-              }}
             />
             <Button
               onClick={onClose}
@@ -75,4 +75,6 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
       )}
     </Formik>
   );
-}
+};
+
+export default NoteForm;

@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { MenuVertical } from "neetoicons";
 import { Typography, Dropdown } from "neetoui";
 
+import EditNotePane from "components/Dashboard/Notes/Pane/EditNote";
+
 const Body = ({ title, description, setShowDeleteAlert }) => {
+  const [showEditNotePane, setShowEditPane] = useState(false);
   const handleDelete = () => {
     setShowDeleteAlert(true);
+  };
+  const handleEdit = () => {
+    setShowEditPane(true);
   };
 
   return (
@@ -19,11 +25,12 @@ const Body = ({ title, description, setShowDeleteAlert }) => {
           buttonStyle="text"
           position="bottom-end"
         >
-          <li>Edit</li>
+          <li onClick={handleEdit}>Edit</li>
           <li onClick={handleDelete}>Delete</li>
         </Dropdown>
       </div>
       <Typography style="body2">{description}</Typography>
+      <EditNotePane setShowPane={setShowEditPane} showPane={showEditNotePane} />
     </div>
   );
 };
