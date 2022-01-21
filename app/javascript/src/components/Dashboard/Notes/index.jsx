@@ -7,7 +7,7 @@ import Menubar from "components/Common/Menubar";
 
 import Card from "./Card";
 import { NOTES_DATA } from "./constants";
-import NewNotePane from "./Pane/CreateNote";
+import CreateNote from "./Pane/CreateNote";
 
 const Notes = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -21,13 +21,14 @@ const Notes = () => {
           title="Notes"
           setShowMenu={setShowMenu}
           setShowPane={setShowNewNotePane}
+          showMenu={showMenu}
         />
         <div className="w-full space-y-4">
           {NOTES_DATA.map(note => (
             <Card key={note.id} note={note} />
           ))}
         </div>
-        <NewNotePane
+        <CreateNote
           showPane={showNewNotePane}
           setShowPane={setShowNewNotePane}
         />

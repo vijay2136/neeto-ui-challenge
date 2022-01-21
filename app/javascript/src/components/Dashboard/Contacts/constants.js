@@ -36,3 +36,22 @@ export const COLUMNS = [
     width: "30%",
   },
 ];
+
+export const ROLE_OPTIONS = [
+  {
+    label: "ROLE 1",
+    value: "role1",
+  },
+  {
+    label: "ROLE 2",
+    value: "role2",
+  },
+  {
+    label: "ROLE 3",
+    value: "role3",
+  },
+  {
+    label: "ROLE 4",
+    value: "role4",
+  },
+];

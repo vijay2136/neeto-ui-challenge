@@ -32,4 +32,10 @@ export default {
       value: "Getting Started",
     },
   },
+  contactsForm: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "",
+  },
 };

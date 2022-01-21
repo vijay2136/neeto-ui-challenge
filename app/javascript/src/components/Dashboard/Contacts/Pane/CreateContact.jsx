@@ -6,10 +6,10 @@ import formInitialValues from "constants/formInitialValues";
 
 import Form from "./Form";
 
-const CreateNote = ({ showPane, setShowPane }) => {
+const CreateContact = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
-  const handleNote = () => {
-    Toastr.success("Note has been added successfully");
+  const handleCreate = () => {
+    Toastr.success("Contact has been added successfully");
     setShowPane(false);
   };
 
@@ -17,16 +17,16 @@ const CreateNote = ({ showPane, setShowPane }) => {
     <Pane isOpen={showPane} onClose={onClose}>
       <Pane.Header>
         <Typography style="h2" weight="semibold">
-          Add New Note
+          Add New Contact
         </Typography>
       </Pane.Header>
       <Form
         onClose={onClose}
-        note={formInitialValues.notesForm}
-        handleNote={handleNote}
+        contact={formInitialValues.contactsForm}
+        handleSubmit={handleCreate}
       />
     </Pane>
   );
 };
 
-export default CreateNote;
+export default CreateContact;
