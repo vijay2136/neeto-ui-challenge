@@ -35,5 +35,8 @@ module.exports = {
   },
   variants: {
     borderWidth: ["last"],
+    extend: {
+      backgroundColor: ["odd"],
+    },
   },
 };
