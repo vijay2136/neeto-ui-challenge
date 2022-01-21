@@ -15,7 +15,7 @@ const Form = ({ onClose, contact, handleSubmit }) => {
       onSubmit={handleSubmit}
       validationSchema={formValidationSchemas.contactsForm}
     >
-      {({ isSubmitting, handleSubmit }) => (
+      {({ isSubmitting }) => (
         <FormikForm className="w-full">
           <Pane.Body>
             <div className="space-y-8 w-full">
@@ -51,16 +51,12 @@ const Form = ({ onClose, contact, handleSubmit }) => {
           <Pane.Footer>
             <Button
               type="submit"
-              label={"Save Changes"}
+              label="Save Changes"
               size="large"
               style="primary"
               className="mr-3"
               disabled={isSubmitting}
               loading={isSubmitting}
-              onClick={e => {
-                e.preventDefault();
-                handleSubmit();
-              }}
             />
             <Button
               onClick={onClose}
