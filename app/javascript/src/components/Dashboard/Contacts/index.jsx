@@ -9,10 +9,12 @@ import Header from "components/Common/Header";
 import Menubar from "components/Common/Menubar";
 
 import { CONTACTS, COLUMNS } from "./constants";
+import CreateContact from "./Pane/CreateContact";
 
 const Contacts = () => {
   const [showMenu, setShowMenu] = useState(true);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [showCreateContactPane, setShowCreateContactPane] = useState(false);
   const onClose = () => {
     setShowDeleteAlert(false);
   };
@@ -38,13 +40,17 @@ const Contacts = () => {
     <>
       <Menubar showMenu={showMenu} title="Contacts" />
       <Container>
-        <Header title="Contacts" setShowMenu={setShowMenu} />
+        <Header
+          title="Contacts"
+          setShowMenu={setShowMenu}
+          setShowPane={setShowCreateContactPane}
+        />
         <div className="h-screen w-full space-y-8">
           <Table
-            className="overflow-hidden odd:bg-gray-100"
             fixedHeight
             columnData={COLUMN_DATA}
             rowData={CONTACTS}
+            className="overflow-hidden odd:bg-gray-100"
           />
           <div className="flex justify-end">
             <Pagination count={1000} pageNo={3} pageSize={100} />
@@ -55,6 +61,10 @@ const Contacts = () => {
         onClose={onClose}
         showDeleteAlert={showDeleteAlert}
         title="Contact"
+      />
+      <CreateContact
+        showPane={showCreateContactPane}
+        setShowPane={setShowCreateContactPane}
       />
     </>
   );
