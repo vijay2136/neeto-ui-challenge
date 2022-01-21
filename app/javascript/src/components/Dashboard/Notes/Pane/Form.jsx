@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Formik, Form } from "formik";
+import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 
@@ -8,7 +8,7 @@ import formValidationSchemas from "constants/formValidationSchemas";
 
 import { ASSIGNED_CONTACT_OPTIONS, TAGS_OPTIONS } from "../constants";
 
-const NoteForm = ({ isEdit = false, onClose, note, handleNote }) => {
+const Form = ({ isEdit = false, onClose, note, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
   const handleSubmit = () => {
     setSubmitted(true);
@@ -24,7 +24,7 @@ const NoteForm = ({ isEdit = false, onClose, note, handleNote }) => {
       validationSchema={formValidationSchemas.notesForm}
     >
       {({ isSubmitting }) => (
-        <Form className="w-full">
+        <FormikForm className="w-full">
           <Pane.Body>
             <div className="space-y-8 w-full">
               <Input
@@ -71,10 +71,10 @@ const NoteForm = ({ isEdit = false, onClose, note, handleNote }) => {
               style="text"
             />
           </Pane.Footer>
-        </Form>
+        </FormikForm>
       )}
     </Formik>
   );
 };
 
-export default NoteForm;
+export default Form;

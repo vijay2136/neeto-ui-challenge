@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { Button } from "neetoui";
 import { Header as NeetoHeader } from "neetoui/layouts";
 
-const Header = ({ title, setShowMenu, setShowPane }) => {
+const Header = ({ title, setShowMenu, setShowPane, showMenu }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <NeetoHeader
       title={`All ${title}`}
-      menuBarToggle={() => setShowMenu(prev => !prev)}
+      menuBarToggle={() => setShowMenu(!showMenu)}
       actionBlock={
         <Button
           onClick={() => setShowPane(true)}

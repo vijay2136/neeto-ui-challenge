@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { MenuVertical } from "neetoicons";
 import { Typography, Dropdown } from "neetoui";
 
-import EditNotePane from "components/Dashboard/Notes/Pane/EditNote";
+import EditNote from "components/Dashboard/Notes/Pane/EditNote";
 
 const Body = ({ title, description, setShowDeleteAlert }) => {
   const [showEditNotePane, setShowEditPane] = useState(false);
@@ -30,7 +30,7 @@ const Body = ({ title, description, setShowDeleteAlert }) => {
         </Dropdown>
       </div>
       <Typography style="body2">{description}</Typography>
-      <EditNotePane setShowPane={setShowEditPane} showPane={showEditNotePane} />
+      <EditNote setShowPane={setShowEditPane} showPane={showEditNotePane} />
     </div>
   );
 };

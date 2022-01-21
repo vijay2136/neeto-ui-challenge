@@ -6,7 +6,7 @@ import formInitialValues from "constants/formInitialValues";
 
 import Form from "./Form";
 
-const NewNotePane = ({ showPane, setShowPane }) => {
+const CreateNote = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
   const handleNote = () => {
     Toastr.success("Note has been added successfully");
@@ -29,4 +29,4 @@ const NewNotePane = ({ showPane, setShowPane }) => {
   );
 };
 
-export default NewNotePane;
+export default CreateNote;
