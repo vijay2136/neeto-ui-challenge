@@ -4,6 +4,7 @@ import { MenuHorizontal } from "neetoicons";
 import { Table, Pagination, Dropdown } from "neetoui";
 import { Container } from "neetoui/layouts";
 
+import DeleteAlert from "components/Common/DeleteAlert";
 import Header from "components/Common/Header";
 import Menubar from "components/Common/Menubar";
 
@@ -11,6 +12,10 @@ import { CONTACTS, COLUMNS } from "./constants";
 
 const Contacts = () => {
   const [showMenu, setShowMenu] = useState(true);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const onClose = () => {
+    setShowDeleteAlert(false);
+  };
   const COLUMN_DATA = [
     ...COLUMNS,
     {
@@ -21,7 +26,7 @@ const Contacts = () => {
           position="bottom-end"
         >
           <li>Edit</li>
-          <li>Delete</li>
+          <li onClick={() => setShowDeleteAlert(true)}>Delete</li>
         </Dropdown>
       ),
       className: "text-right",
@@ -46,6 +51,11 @@ const Contacts = () => {
           </div>
         </div>
       </Container>
+      <DeleteAlert
+        onClose={onClose}
+        showDeleteAlert={showDeleteAlert}
+        title="Contact"
+      />
     </>
   );
 };

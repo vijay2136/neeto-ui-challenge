@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import DeleteAlert from "components/Dashboard/Notes/DeleteAlert";
+import DeleteAlert from "components/Common/DeleteAlert";
 
 import Body from "./Body";
 import Footer from "./Footer";
@@ -20,7 +20,11 @@ const Card = ({ note }) => {
         setShowDeleteAlert={setShowDeleteAlert}
       />
       <Footer action={action} tag={tag} time={time} img={img} />
-      <DeleteAlert onClose={onClose} showDeleteAlert={showDeleteAlert} />
+      <DeleteAlert
+        onClose={onClose}
+        showDeleteAlert={showDeleteAlert}
+        title="Note"
+      />
     </div>
   );
 };
