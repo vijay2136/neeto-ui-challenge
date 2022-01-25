@@ -4,16 +4,14 @@ import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
-import formValidationSchemas from "constants/formValidationSchemas";
-
-import { ROLE_OPTIONS } from "../constants";
+import { VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
 
 const Form = ({ onClose, contact, handleSubmit }) => {
   return (
     <Formik
       initialValues={contact}
       onSubmit={handleSubmit}
-      validationSchema={formValidationSchemas.contactsForm}
+      validationSchema={VALIDATION_SCHEMA}
     >
       {({ isSubmitting }) => (
         <FormikForm className="w-full">

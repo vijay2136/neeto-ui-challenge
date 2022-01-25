@@ -2,8 +2,7 @@ import React from "react";
 
 import { Pane, Typography, Toastr } from "neetoui";
 
-import formInitialValues from "constants/formInitialValues";
-
+import { EDIT_FORM_VALUES } from "./constants";
 import Form from "./Form";
 
 const EditNote = ({ showPane, setShowPane }) => {
@@ -23,7 +22,7 @@ const EditNote = ({ showPane, setShowPane }) => {
       <Form
         isEdit
         onClose={onClose}
-        note={formInitialValues.editNotes}
+        note={EDIT_FORM_VALUES}
         handleNote={handleNote}
       />
     </Pane>
