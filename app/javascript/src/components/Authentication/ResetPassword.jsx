@@ -4,8 +4,8 @@ import { Form, Formik } from "formik";
 import { Button } from "neetoui";
 import { Input } from "neetoui/formik";
 
-import formInitialValues from "constants/formInitialValues";
-import formValidationSchemas from "constants/formValidationSchemas";
+import formInitialValues from "./constants/formInitialValues";
+import formValidationSchemas from "./constants/formValidationSchemas";
 
 const ResetPassword = () => {
   const [submitted, setSubmitted] = useState(false);

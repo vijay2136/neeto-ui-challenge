@@ -5,8 +5,9 @@ import { Button } from "neetoui";
 import { Input } from "neetoui/formik";
 import { Container, Header } from "neetoui/layouts";
 
-import formValidationSchemas from "constants/formValidationSchemas";
 import { useUserState } from "contexts/user";
+
+import { VALIDATION_SCHEMA } from "./constants";
 
 const Profile = () => {
   const { user } = useUserState();
@@ -30,7 +31,7 @@ const Profile = () => {
           onSubmit={onSubmit}
           validateOnBlur={submitted}
           validateOnChange={submitted}
-          validationSchema={formValidationSchemas.profileForm}
+          validationSchema={VALIDATION_SCHEMA}
         >
           {({ handleSubmit }) => (
             <Form className="w-full p-8 space-y-6 bg-white border rounded-lg shadow-sm">

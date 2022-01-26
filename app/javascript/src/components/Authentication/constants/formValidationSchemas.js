@@ -18,10 +18,4 @@ export default {
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Required"),
   }),
-  profileForm: yup.object().shape({
-    email: yup.string().email("Invalid email address").required("Required"),
-    firstName: yup.string().required("Required"),
-    lastName: yup.string().required("Required"),
-    password: yup.string().required("Required"),
-  }),
 };

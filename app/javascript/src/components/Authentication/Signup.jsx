@@ -6,8 +6,9 @@ import { Input } from "neetoui/formik";
 import PropTypes from "prop-types";
 
 import authenticationApi from "apis/authentication";
-import formInitialValues from "constants/formInitialValues";
-import formValidationSchemas from "constants/formValidationSchemas";
+
+import formInitialValues from "./constants/formInitialValues";
+import formValidationSchemas from "./constants/formValidationSchemas";
 
 const Signup = ({ history }) => {
   const [loading, setLoading] = useState(false);

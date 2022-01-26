@@ -7,10 +7,11 @@ import PropTypes from "prop-types";
 
 import authenticationApi from "apis/authentication";
 import { setAuthHeaders } from "apis/axios";
-import formInitialValues from "constants/formInitialValues";
-import formValidationSchemas from "constants/formValidationSchemas";
 import { useAuthDispatch } from "contexts/auth";
 import { useUserDispatch } from "contexts/user";
+
+import formInitialValues from "./constants/formInitialValues";
+import formValidationSchemas from "./constants/formValidationSchemas";
 
 const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
