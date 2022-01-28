@@ -7,10 +7,10 @@ import PropTypes from "prop-types";
 
 import authenticationApi from "apis/authentication";
 import { setAuthHeaders } from "apis/axios";
-import formInitialValues from "constants/formInitialValues";
-import formValidationSchemas from "constants/formValidationSchemas";
 import { useAuthDispatch } from "contexts/auth";
 import { useUserDispatch } from "contexts/user";
+
+import { INITIAL_VALUES, VALIDATION_SCHEMAS } from "./constants";
 
 const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -44,11 +44,11 @@ const Login = ({ history }) => {
           Sign In
         </h2>
         <Formik
-          initialValues={formInitialValues.loginForm}
+          initialValues={INITIAL_VALUES.login}
           validateOnBlur={submitted}
           validateOnChange={submitted}
           onSubmit={onSubmit}
-          validationSchema={formValidationSchemas.loginForm}
+          validationSchema={VALIDATION_SCHEMAS.login}
         >
           {({ handleSubmit }) => (
             <Form className="w-full p-8 space-y-6 bg-white border rounded-md shadow">

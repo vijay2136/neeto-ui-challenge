@@ -21,7 +21,6 @@ const Notes = () => {
           title="Notes"
           setShowMenu={setShowMenu}
           setShowPane={setShowNewNotePane}
-          showMenu={showMenu}
         />
         <div className="w-full space-y-4">
           {NOTES_DATA.map(note => (

@@ -6,8 +6,8 @@ import { Input } from "neetoui/formik";
 import PropTypes from "prop-types";
 
 import authenticationApi from "apis/authentication";
-import formInitialValues from "constants/formInitialValues";
-import formValidationSchemas from "constants/formValidationSchemas";
+
+import { INITIAL_VALUES, VALIDATION_SCHEMAS } from "./constants";
 
 const Signup = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -43,11 +43,11 @@ const Signup = ({ history }) => {
           Signup
         </h2>
         <Formik
-          initialValues={formInitialValues.signupForm}
+          initialValues={INITIAL_VALUES.signup}
           validateOnBlur={submitted}
           validateOnChange={submitted}
           onSubmit={onSubmit}
-          validationSchema={formValidationSchemas.signupForm}
+          validationSchema={VALIDATION_SCHEMAS.signup}
         >
           {({ handleSubmit }) => (
             <Form className="w-full p-8 space-y-6 bg-white border rounded-md shadow">

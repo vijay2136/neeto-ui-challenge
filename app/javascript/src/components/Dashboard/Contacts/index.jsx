@@ -44,7 +44,6 @@ const Contacts = () => {
           title="Contacts"
           setShowMenu={setShowMenu}
           setShowPane={setShowCreateContactPane}
-          showMenu={showMenu}
         />
         <div className="h-screen w-full space-y-8">
           <Table

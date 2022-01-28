@@ -4,9 +4,11 @@ import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 
-import formValidationSchemas from "constants/formValidationSchemas";
-
-import { ASSIGNED_CONTACT_OPTIONS, TAGS_OPTIONS } from "../constants";
+import {
+  ASSIGNED_CONTACT_OPTIONS,
+  TAGS_OPTIONS,
+  VALIDATION_SCHEMA,
+} from "./constants";
 
 const Form = ({ isEdit = false, onClose, note, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -21,7 +23,7 @@ const Form = ({ isEdit = false, onClose, note, handleNote }) => {
       onSubmit={handleSubmit}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={formValidationSchemas.notesForm}
+      validationSchema={VALIDATION_SCHEMA}
     >
       {({ isSubmitting }) => (
         <FormikForm className="w-full">
